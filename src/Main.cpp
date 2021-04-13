@@ -492,7 +492,7 @@ int main(int argc, char *argv[]) {
       scene.Write(shader);
 
       //Setup full-screen shader
-      sf::RenderStates states = sf::RenderStates::Default;
+      sf::RenderStates states;// = sf::RenderStates::Default;
       states.shader = &shader;
 
       //Draw the fractal
@@ -505,7 +505,7 @@ int main(int argc, char *argv[]) {
         sf::Sprite sprite(renderTexture.getTexture());
         sprite.setScale(float(screen_size.width) / float(resolution->width),
                         float(screen_size.height) / float(resolution->height));
-        window.draw(sprite);
+        window.draw(sprite, sf::RenderStates());
       } else {
         //Draw directly to the main window
         window.draw(rect, states);

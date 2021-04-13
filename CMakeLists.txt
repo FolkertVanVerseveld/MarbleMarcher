@@ -30,3 +30,5 @@ target_link_libraries(MarbleMarcher
   sfml-graphics
   sfml-audio
 )
+
+file(COPY "assets" DESTINATION ${CMAKE_BINARY_DIR})

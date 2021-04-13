@@ -56,13 +56,13 @@ Overlays::Texts Overlays::GetOption(Texts from, Texts to) {
 
 void Overlays::UpdateMenu(float mouse_x, float mouse_y) {
   //Update text boxes
-  MakeText("Marble\nMarcher", 60, 20, 72, sf::Color::White, all_text[TITLE]);
-  MakeText("Play", 80, 230, 60, sf::Color::White, all_text[PLAY]);
-  MakeText("Levels", 80, 300, 60, sf::Color::White, all_text[LEVELS]);
-  MakeText("Controls", 80, 370, 60, sf::Color::White, all_text[CONTROLS]);
-  MakeText("Screen Saver", 80, 440, 60, sf::Color::White, all_text[SCREEN_SAVER]);
-  MakeText("Exit", 80, 510, 60, sf::Color::White, all_text[EXIT]);
-  MakeText("\xA9""2019 CodeParade 1.1.1\nMusic by PettyTheft", 16, 652, 32, sf::Color::White, all_text[CREDITS], true);
+  MakeText("Marble\nMarcher", 60, 20, 72, sf::Color(255, 255, 255, 255), all_text[TITLE]);
+  MakeText("Play", 80, 230, 60, sf::Color(255, 255, 255, 255), all_text[PLAY]);
+  MakeText("Levels", 80, 300, 60, sf::Color(255, 255, 255, 255), all_text[LEVELS]);
+  MakeText("Controls", 80, 370, 60, sf::Color(255, 255, 255, 255), all_text[CONTROLS]);
+  MakeText("Screen Saver", 80, 440, 60, sf::Color(255, 255, 255, 255), all_text[SCREEN_SAVER]);
+  MakeText("Exit", 80, 510, 60, sf::Color(255, 255, 255, 255), all_text[EXIT]);
+  MakeText("\xA9""2019 CodeParade 1.1.1\nMusic by PettyTheft", 16, 652, 32, sf::Color(255, 255, 255, 255), all_text[CREDITS], true);
   all_text[TITLE].setLineSpacing(0.76f);
   all_text[CREDITS].setLineSpacing(0.9f);
 
@@ -72,9 +72,9 @@ void Overlays::UpdateMenu(float mouse_x, float mouse_y) {
 
 void Overlays::UpdateControls(float mouse_x, float mouse_y) {
   //Update text boxes
-  MakeText("Roll\nCamera\nZoom\nRestart\nPause", 40, 200, 46, sf::Color::White, all_text[CONTROLS_L]);
-  MakeText("WASD or Arrows\nMouse\nScroll Wheel\nR or Right-Click\nEsc", 280, 200, 46, sf::Color::White, all_text[CONTROLS_R]);
-  MakeText("Back", 60, 550, 40, sf::Color::White, all_text[BACK]);
+  MakeText("Roll\nCamera\nZoom\nRestart\nPause", 40, 200, 46, sf::Color(255, 255, 255, 255), all_text[CONTROLS_L]);
+  MakeText("WASD or Arrows\nMouse\nScroll Wheel\nR or Right-Click\nEsc", 280, 200, 46, sf::Color(255, 255, 255, 255), all_text[CONTROLS_R]);
+  MakeText("Back", 60, 550, 40, sf::Color(255, 255, 255, 255), all_text[BACK]);
 
   //A little extra vertical spacing
   all_text[CONTROLS_L].setLineSpacing(1.1f);
@@ -94,7 +94,7 @@ void Overlays::UpdateLevels(float mouse_x, float mouse_y) {
       const float y = 80.0f + float(j / 3) * 120.0f;
       const float x = 240.0f + float(j % 3) * 400.0f;
       const char* txt = high_scores.HasUnlocked(i) ? all_levels[i].txt : "???";
-      MakeText(txt, x, y, 32, sf::Color::White, all_text[j + L0]);
+      MakeText(txt, x, y, 32, sf::Color(255, 255, 255, 255), all_text[j + L0]);
       const sf::FloatRect text_bounds = all_text[j + L0].getLocalBounds();
       all_text[j + L0].setOrigin(text_bounds.width / 2, text_bounds.height / 2);
     } else {
@@ -102,13 +102,13 @@ void Overlays::UpdateLevels(float mouse_x, float mouse_y) {
     }
   }
   if (level_page > 0) {
-    MakeText("<", 540, 652, 48, sf::Color::White, all_text[PREV]);
+    MakeText("<", 540, 652, 48, sf::Color(255, 255, 255, 255), all_text[PREV]);
   } else {
     all_text[PREV] = sf::Text();
   }
-  MakeText("Back", 590, 660, 40, sf::Color::White, all_text[BACK2]);
+  MakeText("Back", 590, 660, 40, sf::Color(255, 255, 255, 255), all_text[BACK2]);
   if (level_page < num_level_pages - 1) {
-    MakeText(">", 732, 652, 48, sf::Color::White, all_text[NEXT]);
+    MakeText(">", 732, 652, 48, sf::Color(255, 255, 255, 255), all_text[NEXT]);
   } else {
     all_text[NEXT] = sf::Text();
   }
@@ -119,14 +119,14 @@ void Overlays::UpdateLevels(float mouse_x, float mouse_y) {
 
 void Overlays::UpdatePaused(float mouse_x, float mouse_y) {
   //Update text boxes
-  MakeText("Paused", 540, 288, 54, sf::Color::White, all_text[PAUSED]);
-  MakeText("Continue", 370, 356, 40, sf::Color::White, all_text[CONTINUE]);
-  MakeText("Restart", 620, 356, 40, sf::Color::White, all_text[RESTART]);
-  MakeText("Quit", 845, 356, 40, sf::Color::White, all_text[QUIT]);
+  MakeText("Paused", 540, 288, 54, sf::Color(255, 255, 255, 255), all_text[PAUSED]);
+  MakeText("Continue", 370, 356, 40, sf::Color(255, 255, 255, 255), all_text[CONTINUE]);
+  MakeText("Restart", 620, 356, 40, sf::Color(255, 255, 255, 255), all_text[RESTART]);
+  MakeText("Quit", 845, 356, 40, sf::Color(255, 255, 255, 255), all_text[QUIT]);
 
   //Update music setting
   const char* music_txt = (game_settings.mute ? "Music:  Off" : "Music:  On");
-  MakeText(music_txt, 410, 500, 40, sf::Color::White, all_text[MUSIC]);
+  MakeText(music_txt, 410, 500, 40, sf::Color(255, 255, 255, 255), all_text[MUSIC]);
 
   //Update mouse sensitivity setting
   const char* mouse_txt = "Mouse Sensitivity:  High";
@@ -135,7 +135,7 @@ void Overlays::UpdatePaused(float mouse_x, float mouse_y) {
   } else if (game_settings.mouse_sensitivity == 2) {
     mouse_txt = "Mouse Sensitivity:  Low";
   }
-  MakeText(mouse_txt, 410, 550, 40, sf::Color::White, all_text[MOUSE]);
+  MakeText(mouse_txt, 410, 550, 40, sf::Color(255, 255, 255, 255), all_text[MOUSE]);
 
   //Check if mouse intersects anything
   UpdateHover(CONTINUE, MOUSE, mouse_x, mouse_y);
@@ -143,13 +143,13 @@ void Overlays::UpdatePaused(float mouse_x, float mouse_y) {
 
 void Overlays::DrawMenu(sf::RenderWindow& window) {
   for (int i = TITLE; i <= CREDITS; ++i) {
-    window.draw(all_text[i]);
+    window.draw(all_text[i], sf::RenderStates());
   }
 }
 
 void Overlays::DrawControls(sf::RenderWindow& window) {
   for (int i = CONTROLS_L; i <= BACK; ++i) {
-    window.draw(all_text[i]);
+    window.draw(all_text[i], sf::RenderStates());
   }
 }
 
@@ -161,14 +161,14 @@ void Overlays::DrawTimer(sf::RenderWindow& window, int t, bool is_high_score) {
     //Create text for the number
     char txt[] = "0";
     txt[0] = '3' - (t / 60);
-    MakeText(txt, 640, 50, 140, sf::Color::White, text);
+    MakeText(txt, 640, 50, 140, sf::Color(255, 255, 255, 255), text);
 
     //Play count sound if needed
     if (t % 60 == 0) {
       sound_count.play();
     }
   } else if (t < 4*60) {
-    MakeText("GO!", 640, 50, 140, sf::Color::White, text);
+    MakeText("GO!", 640, 50, 140, sf::Color(255, 255, 255, 255), text);
 
     //Play go sound if needed
     if (t == 3*60) {
@@ -177,7 +177,7 @@ void Overlays::DrawTimer(sf::RenderWindow& window, int t, bool is_high_score) {
   } else {
     //Create timer text
     const int score = t - 3 * 60;
-    const sf::Color col = (is_high_score ? sf::Color::Green : sf::Color::White);
+    const sf::Color col = sf::Color(0, 255, 0, 255);//(is_high_score ? sf::Color::Green : sf::Color(255, 255, 255, 255));
     MakeTime(score, 530, 10, 60, col, text);
   }
 
@@ -196,30 +196,30 @@ void Overlays::DrawTimer(sf::RenderWindow& window, int t, bool is_high_score) {
   }
 
   //Draw the text
-  window.draw(text);
+  window.draw(text, sf::RenderStates());
 }
 
 void Overlays::DrawLevelDesc(sf::RenderWindow& window, int level) {
   sf::Text text;
-  MakeText(all_levels[level].txt, 640, 60, 48, sf::Color::White, text);
+  MakeText(all_levels[level].txt, 640, 60, 48, sf::Color(255, 255, 255, 255), text);
   const sf::FloatRect text_bounds = text.getLocalBounds();
   text.setOrigin(text_bounds.width / 2, text_bounds.height / 2);
-  window.draw(text);
+  window.draw(text, sf::RenderStates());
 }
 
 void Overlays::DrawFPS(sf::RenderWindow& window, int fps) {
   sf::Text text;
   std::string fps_str = std::to_string(fps) + "fps";
-  const sf::Color col = (fps < 50 ? sf::Color::Red : sf::Color::White);
+  const sf::Color col = sf::Color(255, 0, 0, 255);//(fps < 50 ? sf::Color::Red : sf::Color(255, 255, 255, 255));
   MakeText(fps_str.c_str(), 1280, 720, 24, col, text, false);
   const sf::FloatRect text_bounds = text.getLocalBounds();
   text.setOrigin(text_bounds.width, text_bounds.height);
-  window.draw(text);
+  window.draw(text, sf::RenderStates());
 }
 
 void Overlays::DrawPaused(sf::RenderWindow& window) {
   for (int i = PAUSED; i <= MOUSE; ++i) {
-    window.draw(all_text[i]);
+    window.draw(all_text[i], sf::RenderStates());
   }
 }
 
@@ -233,7 +233,7 @@ void Overlays::DrawArrow(sf::RenderWindow& window, const sf::Vector3f& v3) {
     arrow_spr.setRotation(90.0f + v3.x * 180.0f / pi);
     arrow_spr.setPosition(draw_scale * x, draw_scale * y);
     arrow_spr.setColor(sf::Color(255, 255, 255, alpha));
-    window.draw(arrow_spr);
+    window.draw(arrow_spr, sf::RenderStates());
   }
 }
 
@@ -244,16 +244,16 @@ void Overlays::DrawCredits(sf::RenderWindow& window, bool fullrun, int t) {
     "Activate them with the F1 key during gameplay.\n\n"
     "Thanks for playing!";
   sf::Text text;
-  MakeText(txt, 100, 100, 44, sf::Color::White, text);
+  MakeText(txt, 100, 100, 44, sf::Color(255, 255, 255, 255), text);
   text.setLineSpacing(1.3f);
-  window.draw(text);
+  window.draw(text, sf::RenderStates());
 
   if (fullrun) {
     sf::Text time_txt;
-    MakeTime(t, 640, 226, 72, sf::Color::White, time_txt);
+    MakeTime(t, 640, 226, 72, sf::Color(255, 255, 255, 255), time_txt);
     const sf::FloatRect text_bounds = time_txt.getLocalBounds();
     time_txt.setOrigin(text_bounds.width / 2, text_bounds.height / 2);
-    window.draw(time_txt);
+    window.draw(time_txt, sf::RenderStates());
   }
 }
 
@@ -264,23 +264,23 @@ void Overlays::DrawMidPoint(sf::RenderWindow& window, bool fullrun, int t) {
     "If you need a quick break, take it now.\n"
     "The challenge levels are coming up...";
   sf::Text text;
-  MakeText(txt, 205, 100, 44, sf::Color::White, text);
+  MakeText(txt, 205, 100, 44, sf::Color(255, 255, 255, 255), text);
   text.setLineSpacing(1.3f);
-  window.draw(text);
+  window.draw(text, sf::RenderStates());
 
   if (fullrun) {
     sf::Text time_txt;
-    MakeTime(t, 640, 226, 72, sf::Color::White, time_txt);
+    MakeTime(t, 640, 226, 72, sf::Color(255, 255, 255, 255), time_txt);
     const sf::FloatRect text_bounds = time_txt.getLocalBounds();
     time_txt.setOrigin(text_bounds.width / 2, text_bounds.height / 2);
-    window.draw(time_txt);
+    window.draw(time_txt, sf::RenderStates());
   }
 }
 
 void Overlays::DrawLevels(sf::RenderWindow& window) {
   //Draw the level names
   for (int i = L0; i <= BACK2; ++i) {
-    window.draw(all_text[i]);
+    window.draw(all_text[i], sf::RenderStates());
   }
   //Draw the times
   const int page_start = level_page * LEVELS_PER_PAGE;
@@ -292,21 +292,21 @@ void Overlays::DrawLevels(sf::RenderWindow& window) {
       const float y = 98.0f + float(j / 3) * 120.0f;
       const float x = 148.0f + float(j % 3) * 400.0f;
       MakeTime(high_scores.Get(i), x, y, 48, sf::Color(64, 255, 64), text);
-      window.draw(text);
+      window.draw(text, sf::RenderStates());
     }
   }
 }
 
 void Overlays::DrawSumTime(sf::RenderWindow& window, int t) {
   sf::Text text;
-  MakeTime(t, 10, 680, 32, sf::Color::White, text);
-  window.draw(text);
+  MakeTime(t, 10, 680, 32, sf::Color(255, 255, 255, 255), text);
+  window.draw(text, sf::RenderStates());
 }
 
 void Overlays::DrawCheatsEnabled(sf::RenderWindow& window) {
   sf::Text text;
-  MakeText("Cheats Enabled", 10, 680, 32, sf::Color::White, text);
-  window.draw(text);
+  MakeText("Cheats Enabled", 10, 680, 32, sf::Color(255, 255, 255, 255), text);
+  window.draw(text, sf::RenderStates());
 }
 
 void Overlays::DrawCheats(sf::RenderWindow& window) {
@@ -321,8 +321,8 @@ void Overlays::DrawCheats(sf::RenderWindow& window) {
     "[ P ] Planet toggle\n"
     "[ Z ] Zoom to scale\n"
     "[1-9] Scroll fractal parameter\n";
-  MakeText(txt, 460, 160, 32, sf::Color::White, text, true);
-  window.draw(text);
+  MakeText(txt, 460, 160, 32, sf::Color(255, 255, 255, 255), text, true);
+  window.draw(text, sf::RenderStates());
 }
 
 void Overlays::MakeText(const char* str, float x, float y, float size, const sf::Color& color, sf::Text& text, bool mono) {
@@ -333,7 +333,7 @@ void Overlays::MakeText(const char* str, float x, float y, float size, const sf:
   text.setPosition((x - 2.0f) * draw_scale, (y - 2.0f) * draw_scale);
   text.setFillColor(color);
   text.setOutlineThickness(3.0f * draw_scale);
-  text.setOutlineColor(sf::Color::Black);
+  text.setOutlineColor(sf::Color(0, 0, 0, 255));
 }
 
 void Overlays::MakeTime(int t, float x, float y, float size, const sf::Color& color, sf::Text& text) {

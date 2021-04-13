@@ -46,17 +46,17 @@ int SelectRes::Select(const sf::Vector2i& mouse_pos) {
 
 void SelectRes::Draw(sf::RenderWindow& window, const sf::Vector2i& mouse_pos) {
   const int sel_ix = Select(mouse_pos);
-  window.draw(MakeText("Select Resolution", 320.0f, 26.0f, 48));
+  window.draw(MakeText("Select Resolution", 320.0f, 26.0f, 48), sf::RenderStates());
   for (int i = 0; i < num_resolutions; ++i) {
     const Resolution& res = all_resolutions[i];
     const float y = 90.0f + float(i)*60.0f;
     const bool is_sel = (i == sel_ix);
-    window.draw(MakeText(res.info, 20.0f, y + 5.0f, 32, is_sel, false));
+    window.draw(MakeText(res.info, 20.0f, y + 5.0f, 32, is_sel, false), sf::RenderStates());
     const std::string res_str = std::to_string(res.width) + " x " + std::to_string(res.height);
-    window.draw(MakeText(res_str.c_str(), 390.0f, y, 42, is_sel, false));
+    window.draw(MakeText(res_str.c_str(), 390.0f, y, 42, is_sel, false), sf::RenderStates());
   }
   const char* ftxt = (is_fullscreen ? "Full Screen [X]" : "Full Screen [ ]");
-  window.draw(MakeText(ftxt, 320.0f, 530.0f, 40, sel_ix == num_resolutions));
+  window.draw(MakeText(ftxt, 320.0f, 530.0f, 40, sel_ix == num_resolutions), sf::RenderStates());
 }
 
 sf::Text SelectRes::MakeText(const char* str, float x, float y, int size, bool selected, bool centered) const {
@@ -66,7 +66,7 @@ sf::Text SelectRes::MakeText(const char* str, float x, float y, int size, bool s
   text.setCharacterSize(size);
   text.setLetterSpacing(0.8f);
   text.setPosition(x, y);
-  text.setFillColor(selected ? sf::Color::White : sf::Color(128,128,128));
+  text.setFillColor(selected ? sf::Color(255, 255, 255, 255) : sf::Color(128,128,128));
   if (centered) {
     const sf::FloatRect text_bounds = text.getLocalBounds();
     text.setOrigin(text_bounds.width / 2, text_bounds.height / 2);
