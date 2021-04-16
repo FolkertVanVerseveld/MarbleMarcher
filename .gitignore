@@ -1,4 +1,6 @@
 .vscode
+.vs/
+out/
 .DS_Store
 build
 src/resources.c*
