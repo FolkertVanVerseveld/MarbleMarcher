@@ -2,5 +2,6 @@
 .vs/
 out/
 .DS_Store
+cmake-build-debug
 build
 src/resources.c*

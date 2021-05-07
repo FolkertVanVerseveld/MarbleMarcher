@@ -12,7 +12,7 @@ find_package(SFML 2.5 COMPONENTS system window graphics audio REQUIRED)
 
 if(PROFILING)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DTRACY_ENABLE=1")
-  set(PROFILE_SOURCES "tracy/TracyClient.cpp")
+  set(PROFILE_SOURCES "vendor/tracy/TracyClient.cpp")
 endif()
 
 ## TARGETS
@@ -23,6 +23,8 @@ target_include_directories(MarbleMarcherSources PUBLIC
   ${SFML_INCLUDE_DIR}
 )
 target_compile_definitions(MarbleMarcherSources PRIVATE SFML_STATIC)
+
+add_subdirectory(vendor/imgui-sfml)
 
 if(WIN32)
   add_executable(MarbleMarcher WIN32 src/Main.cpp "${PROFILE_SOURCES}" src/Resource.rc assets/icon.ico)
@@ -37,6 +39,7 @@ target_link_libraries(MarbleMarcher
   sfml-window
   sfml-graphics
   sfml-audio
+  ImGui-SFML::ImGui-SFML
 )
 
 file(COPY "assets" DESTINATION ${CMAKE_BINARY_DIR})

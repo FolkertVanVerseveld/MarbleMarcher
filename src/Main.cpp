@@ -23,13 +23,12 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <string>
 #include <iostream>
-#include <fstream>
-#include <thread>
-#include <mutex>
+
+#include "imgui.h"
+#include "imgui-SFML.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -205,6 +204,9 @@ int main(int argc, char *argv[]) {
   window.setVerticalSyncEnabled(true);
   window.setKeyRepeatEnabled(false);
   window.requestFocus();
+  ImGui::SFML::Init(window);
+
+
 
   //If native resolution is the same, then we don't need a render texture
   if (resolution->width == screen_size.width && resolution->height == screen_size.height) {
@@ -237,6 +239,8 @@ int main(int argc, char *argv[]) {
   menu_music.setVolume(GetVol());
   menu_music.play();
 
+  char windowTitle[255] = "ImGui + SFML = <3";
+
   //Main loop
   sf::Clock clock;
   float smooth_fps = target_fps;
@@ -245,6 +249,8 @@ int main(int argc, char *argv[]) {
     sf::Event event;
     float mouse_wheel = 0.0f;
     while (window.pollEvent(event)) {
+        ImGui::SFML::ProcessEvent(event);
+
       if (event.type == sf::Event::Closed) {
         window.close();
         break;
@@ -315,7 +321,18 @@ int main(int argc, char *argv[]) {
           } else {
             scene.Cheat_Param(-1);
           }
-        } if (keycode >= sf::Keyboard::Num0 && keycode <= sf::Keyboard::Num9) {
+        } else if (keycode == sf::Keyboard::F5) {
+            // Reload fragment shader
+            if (!shader.loadFromFile(frag_glsl, sf::Shader::Fragment)) {
+                ERROR_MSG("Failed to compile fragment shader");
+                return 1;
+            }
+
+            shader.setUniform("iResolution", window_res);
+            scene.Write(shader);
+        }
+
+        if (keycode >= sf::Keyboard::Num0 && keycode <= sf::Keyboard::Num9) {
           scene.Cheat_Param(int(keycode) - int(sf::Keyboard::Num1));
         }
         all_keys[keycode] = true;
@@ -551,6 +568,15 @@ int main(int argc, char *argv[]) {
       overlays.DrawFPS(window, int(smooth_fps + 0.5f));
     }
 
+      ImGui::SFML::Update(window, clock.restart());
+
+      ImGui::Begin("Sample window");
+
+      ImGui::InputText("Window title", windowTitle, 255);
+
+      ImGui::End();
+      ImGui::SFML::Render(window);
+
     if (!skip_frame) {
       //Finally display to the screen
       window.display();
@@ -569,6 +595,8 @@ int main(int argc, char *argv[]) {
       }
     }
   }
+
+  ImGui::SFML::Shutdown();
 
   //Stop all music
   menu_music.stop();

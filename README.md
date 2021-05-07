@@ -1,22 +1,15 @@
-# Marble Marcher
+# Marble Marcher Sandbox
 
-[![Build Status](https://travis-ci.org/jgoldfar/MarbleMarcher.svg?branch=master)](https://travis-ci.org/jgoldfar/MarbleMarcher)
+Marble Marcher Sandbox is an interactive Marble Marcher level explorer where the user is able to manipulate
+the parameters of various aspects of the game.
 
-Marble Marcher is a video game demo that uses a fractal physics engine and fully procedural rendering to produce beautiful and unique gameplay unlike anything you've seen before.
-
-The goal of the game is to reach the flag as quickly as possible.  But be careful not to
-fall off the level or get crushed by the fractal!  There are 24 levels to unlock.
-
-Download Link: https://codeparade.itch.io/marblemarcher
-
-Video Explanation: https://youtu.be/9U0XVdvQwAI
-
-## No Further Development Planned
-There is currently no further major development planned for this game. Please submit issues and pull requests to the [Marble Marcher Community Edition](https://github.com/WAUthethird/Marble-Marcher-Community-Edition) repository instead.
+The goal of this project is to allow experimenting with the fragment shader rendering the scene in order to understand
+the performance impact of different parameters.
 
 ## System Dependencies
 * [Eigen](http://eigen.tuxfamily.org/index.php?title=Main_Page)
 * [SFML 2.5.0](https://www.sfml-dev.org)
+
 ### MacOS
 On macOS these can be conveniently installed using [Homebrew](https://brew.sh):
 
@@ -25,15 +18,14 @@ On macOS these can be conveniently installed using [Homebrew](https://brew.sh):
 Alternatively, [vcpkg](https://github.com/Microsoft/vcpkg) can be used:
 
 `vcpkg install eigen3 sfml`
+
 ### Arch Linux
 `sudo pacman -S eigen sfml git cmake make`
-
-
 
 ## Building
 ### MacOS
 * `mkdir build && cd build`
-* `cmake -DCMAKE_CXX_FLAGS="-I/usr/local/include" ..`
+* `cmake -DCMAKE_CXX_FLAGS="-I/usr/local/include" -DIMGUI_DIR="$(pwd)/../vendor/imgui" -DIMGUI_SFML_FIND_SFML=OFF ..`
     * If you use `vcpkg`, add the flag `-DCMAKE_TOOLCHAIN_FILE=[path/to/vcpkg]/scripts/buildsystems/vcpkg.cmake`
 * `cd ..`
 * `cmake --build build`
